@@ -3,6 +3,14 @@ spring:
     name: car-rental-api
   profiles:
     active: dev                   # Default active profile
+  datasource:
+    url: jdbc:postgresql://localhost:5432/car_rental_dev
+    username: car_rental_user
+    password: car_rental_pass
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: true                   # Enable Flyway migrations
+    locations: classpath:db/migration  # Migration scripts location
   jpa:
     hibernate:
       ddl-auto: none              # Disable automatic schema generation
@@ -22,11 +30,14 @@ spring:
   config:
     activate:
       on-profile: dev
+
 server:
   port: 8081                      # Dev environment port
 logging:
   level:
     root: DEBUG                   # More detailed logs in dev
+    org.flywaydb: TRACE
+    org.springframework.boot.autoconfigure.flyway: TRACE
 
 ---
 spring:
