@@ -3,6 +3,8 @@ package com.carrental.api.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.Instant;
 import java.time.OffsetDateTime;
 
 @Setter
@@ -14,18 +16,28 @@ public class User {
     // User entity fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userID;
+    private Long id;
 
     @Column(name = "full_name", nullable = false)
     private String fullName;
+
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
-    @Column(name = "created_at", nullable = false)
-    private OffsetDateTime createdAt;
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Instant createdAt;
 
+    // For Hibernate - Creates objects via reflection
     protected  User() {}
+
+    public User(String fullName, String email, String passwordHash) {
+        this.fullName = fullName;
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.createdAt = Instant.now();
+    }
 
 }
