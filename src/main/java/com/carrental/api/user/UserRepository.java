@@ -1,6 +1,5 @@
-package com.carrental.api.repository;
+package com.carrental.api.user;
 
-import com.carrental.api.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
