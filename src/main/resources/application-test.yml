@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/car_rental_dev
+    username: car_rental_user
+    password: car_rental_pass
+  jpa:
+    hibernate:
+      ddl-auto: none
+  flyway:
+    enabled: true
